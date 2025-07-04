@@ -1,0 +1,48 @@
+﻿@model ICollection<StudentsEnrollmentSystem.Models.Student>
+
+@{
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/StudentsEnrollmentSystem.styles.css" asp-append-version="true" />
+<h2>Students List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Email</th>
+            <th>EnrollmentDate</th>
+            <th>Department</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.FirstName</td>
+                <td>@student.LastName</td>
+                <td>@student.Email</td>
+                <td>@student.EnrollmentDate</td>
+                <td>@student.Department?.Name</td>
+
+
+                <td>
+            <a asp-controller="Student" asp-action="Edit" asp-route-id="@student.Id" class="btn btn-sm btn-primary">
+                Edit
+            </a>
+
+              <a asp-controller="Student"  asp-action="Delete" asp-route-id="@student.Id" class="btn btn-sm btn-danger">Delete</a>
+
+        </td>
+            </tr>
+      
+        }
+    </tbody>
+</table>
+
+<a href="/Student/Create" class="btn btn-primary">Add New Student</a>
+

@@ -1,0 +1,44 @@
+﻿@model StudentsEnrollmentSystem.Models.Department
+
+@{
+    ViewData["Title"] = "Details";
+}
+@{
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+<h2>Department Details</h2>
+
+<div>
+    <h4>@Model.Name</h4>
+    <p><strong>Budget:</strong> @Model.Budget.ToString()</p>
+</div>
+
+<hr />
+
+<h5>Courses</h5>
+<ul>
+    @foreach (var course in Model.Courses)
+    {
+        <li>@course.Title</li>
+    }
+</ul>
+
+<h5>Students</h5>
+<ul>
+    @foreach (var student in Model.Students)
+    {
+        <li>@student.FirstName</li>
+        <li>@student.LastName</li>
+    }
+</ul>
+
+<h5>Instructors</h5>
+<ul>
+    @foreach (var instructor in Model.Instructors)
+    {
+        <li>@instructor.FirstName  @instructor.LastName</li>
+        
+    }
+</ul>
+
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>

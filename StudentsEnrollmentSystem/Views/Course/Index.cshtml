@@ -1,0 +1,38 @@
+﻿@model ICollection<StudentsEnrollmentSystem.Models.Course>
+@{
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="/StudentsEnrollmentSystem.styles.css" asp-append-version="true" />
+
+<div class="container mt-5 ps-5">
+    <h2>Courses List</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Credit</th>
+                <th>Instructor</th>
+                <th>Department</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in Model)
+            {
+                <tr>
+                    <td>@course.Title</td>
+                    <td>@course.Credit</td>
+                    <td>@course.Instructor?.FirstName @course.Instructor?.LastName</td>
+                    <td>@course.Department?.Name</td>
+                    <td>
+                        <a asp-controller="Course" asp-action="Edit" asp-route-id="@course.Id" class="btn btn-sm btn-primary">Edit</a>
+                        <a asp-controller="Course" asp-action="Delete" asp-route-id="@course.Id" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a asp-controller="Course" asp-action="Create" class="btn btn-primary mt-3">Add New Course</a>
+</div>
