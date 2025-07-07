@@ -17,6 +17,8 @@ namespace StudentsEnrollmentSystem.Controllers
         {
             return View();
         }
+
+
         public IActionResult Team()
         {
             return View();
