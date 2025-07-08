@@ -1,4 +1,5 @@
-﻿@{
+﻿@model StudentsEnrollmentSystem.ViewModels.LoginViewModel
+@{
     Layout = null;
 }
 
@@ -146,14 +147,19 @@
 
     <div class="card shadow-lg">
         <h2>Student Enrollment Login</h2>
-        <form action="/login" method="POST" novalidate>
+        <form asp-controller="Account" asp-action="Login" method="post" novalidate>
             <div class="mb-4 text-start">
-                <label for="studentID">Username</label>
-                <input type="text" class="form-control" id="studentID" name="studentID" />
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" />
             </div>
             <div class="mb-4 text-start">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required placeholder="••••••••" />
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" class="form-control" type="password" placeholder="••••••••" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="mb-3 form-check">
+                <input asp-for="RememberMe" class="form-check-input" />
+                <label asp-for="RememberMe" class="form-check-label"></label>
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
         </form>

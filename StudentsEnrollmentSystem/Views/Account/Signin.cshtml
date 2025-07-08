@@ -1,4 +1,5 @@
-﻿@{
+﻿@model StudentsEnrollmentSystem.ViewModels.RegisterViewModel
+@{
     Layout = null;
 }
 
@@ -139,33 +140,41 @@
 </head>
 <body>
 
-  <div class="overlay"></div>
+    <div class="overlay"></div>
 
-  <div class="card shadow-lg">
-    <h2>Create Your Account</h2>
-    <form action="/sign-in" method="POST" novalidate>
-      <div class="mb-4 text-start">
-        <label for="email">Email Address</label>
-        <input type="email" class="form-control" id="email" name="email" required placeholder="example@student.edu" />
-      </div>
-      <div class="mb-4 text-start">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" name="username" required placeholder="Choose a username" />
-      </div>
-      <div class="mb-4 text-start">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password" required placeholder="••••••••" />
-      </div>
-      <div class="mb-4 text-start">
-        <label for="repassword">Re-enter Password</label>
-        <input type="password" class="form-control" id="repassword" name="repassword" required placeholder="••••••••" />
-      </div>
-      <button type="submit" class="btn btn-primary">Sign In</button>
-    </form>
-    <p class="footer-text mt-3">
+    <div class="card shadow-lg p-4">
+        <h2>Create Your Account</h2>
+        <form asp-controller="Account" asp-action="Signin" method="post" novalidate>
+            <div class="mb-4 text-start">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" placeholder="example@student.edu" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+           
+
+            <div class="mb-4 text-start">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" type="password" placeholder="••••••••" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="mb-4 text-start">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" class="form-control" type="password" placeholder="••••••••" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Sign In</button>
+        </form>
+
+        <p class="footer-text mt-3">
             Already have an account? <a asp-controller="Account" asp-action="Login">Log In</a>
-    </p>
-  </div>
+        </p>
+    </div>
 
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
 </body>
 </html>
